@@ -2,13 +2,8 @@ from googleapiclient.discovery import build
 from google.oauth2 import service_account
 
 import os
-from dotenv import load_dotenv
 
-load_dotenv()
-
-CREDENTIALS_PATH = os.getenv(
-    "GOOGLE_CREDENTIALS_PATH",
-)
+CREDENTIALS_PATH = os.environ.get("GOOGLE_CREDENTIALS_PATH")
 
 SCOPES = ["https://www.googleapis.com/auth/documents.readonly"]
 

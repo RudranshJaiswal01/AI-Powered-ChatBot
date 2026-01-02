@@ -2,3 +2,6 @@
 app/credentials.json
 credentials.json
 .env
+__pycache__/
+app/__pycache__/
+app/vectorstore/
