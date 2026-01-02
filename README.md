@@ -106,8 +106,6 @@ uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 - Invalid or private Google Doc links
 - Empty or malformed documents
 - Questions outside the document scope (graceful fallback response)
-- API failures (Google, Hugging Face, LLM)
-- Token limits and chunking edge cases
 
 ## Deployment
 
