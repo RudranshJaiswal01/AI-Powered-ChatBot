@@ -1,10 +1,12 @@
-from app.vector_db import collection
+from app.vector_db import get_collection
 
 TOP_K = 3
 MAX_DISTANCE_THRESHOLD = 1.2
 
 
 def retrieve_chunks(query_embedding: list[float]) -> list[dict]:
+    collection = get_collection()
+    
     results = collection.query(
         query_embeddings=[query_embedding],
         n_results=TOP_K,

@@ -29,9 +29,15 @@ app.mount("/frontend", StaticFiles(directory=frontend_dir), name="frontend")
 # ---------- Helpers ----------
 
 def is_document_ingested() -> bool:
-    from app.vector_db import collection
-    data = collection.get(limit=1)
-    return len(data["documents"]) > 0
+    from app.vector_db import get_collection
+    collection = get_collection()
+
+    try:
+        data = collection.get(limit=1)
+        return len(data["documents"]) > 0
+    except Exception:
+        return False
+
 
 
 # ---------- Models ----------
@@ -100,7 +106,9 @@ def ingest_and_store(doc_url: str = Query(..., description="Public Google Docs U
 
 @app.get("/debug-db")
 def debug_db():
-    from app.vector_db import collection
+    from app.vector_db import get_collection
+    collection = get_collection()
+
     data = collection.get(limit=3)
     return {
         "count": len(data["documents"]),
@@ -111,15 +119,13 @@ def debug_db():
 
 @app.post("/reset-db")
 def reset_db():
-    from app.vector_db import collection
+    from app.vector_db import reset_collection, get_collection
 
-    all_data = collection.get(include=[])
-    ids = all_data["ids"]
+    reset_collection()
+    get_collection()  # recreate immediately
 
-    if ids:
-        collection.delete(ids=ids)
+    return {"status": "vector db reset"}
 
-    return {"status": "vector db cleared", "deleted": len(ids)}
 
 # ---------- Chat Endpoint ----------
 

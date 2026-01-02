@@ -1,15 +1,22 @@
-import os
+# app/vector_db.py
 import chromadb
+from chromadb.config import Settings
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CHROMA_PATH = os.path.join(BASE_DIR, "app", "vectorstore")
+PERSIST_DIR = "./chroma_db"
+COLLECTION_NAME = "google_doc_chunks"
 
-os.makedirs(CHROMA_PATH, exist_ok=True)
-
-client = chromadb.PersistentClient(
-    path=CHROMA_PATH
+_client = chromadb.Client(
+    Settings(
+        persist_directory=PERSIST_DIR,
+        anonymized_telemetry=False
+    )
 )
 
-collection = client.get_or_create_collection(
-    name="google_doc_chunks"
-)
+def get_collection():
+    return _client.get_or_create_collection(COLLECTION_NAME)
+
+def reset_collection():
+    try:
+        _client.delete_collection(COLLECTION_NAME)
+    except Exception:
+        pass

@@ -1,9 +1,12 @@
-from app.embeddings import embed_texts
-from app.vector_db import collection
-from app.summarize import summarize_chunk
 import uuid
 
+from app.embeddings import embed_texts
+from app.summarize import summarize_chunk
+from app.vector_db import get_collection
+
 def store_chunks(chunks: list):
+    collection = get_collection()
+
     texts = []
     metadatas = []
     ids = []
