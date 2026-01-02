@@ -1,6 +1,5 @@
 from googleapiclient.discovery import build
 from google.oauth2 import service_account
-from app.config import CREDENTIALS_PATH
 
 import os
 from dotenv import load_dotenv
