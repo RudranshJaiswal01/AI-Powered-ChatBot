@@ -2,8 +2,16 @@ from googleapiclient.discovery import build
 from google.oauth2 import service_account
 from app.config import CREDENTIALS_PATH
 
-SCOPES = ["https://www.googleapis.com/auth/documents.readonly"]
+import os
+from dotenv import load_dotenv
 
+load_dotenv()
+
+CREDENTIALS_PATH = os.getenv(
+    "GOOGLE_CREDENTIALS_PATH",
+)
+
+SCOPES = ["https://www.googleapis.com/auth/documents.readonly"]
 
 def fetch_google_doc(document_id: str) -> str:
     creds = service_account.Credentials.from_service_account_file(

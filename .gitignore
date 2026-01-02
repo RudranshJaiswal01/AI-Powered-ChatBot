@@ -1,2 +1,4 @@
-backend/credentials.json
+# Ignore credentials file
+app/credentials.json
+credentials.json
 .env
