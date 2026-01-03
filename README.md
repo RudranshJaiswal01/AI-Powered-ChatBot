@@ -124,7 +124,7 @@ This app can be deployed on Render or any similar PaaS:
 ## Demo
 
 - **Hosted App:** [ https://rubot-wzyz.onrender.com]( https://rubot-wzyz.onrender.com)
-<!-- - **Demo Video:** [2-minute walkthrough](https://your-demo-video-link.com) Replace with actual video link -->
+- **Demo Video:** [3-minute walkthrough](https://drive.google.com/file/d/1DS6iyxz1dry86xtztVD2oSeIC3DJVR1d/view?usp=drivesdk)
 
 **The demo showcases:**
 - Google Doc ingestion and chunking
